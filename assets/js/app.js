@@ -9,9 +9,18 @@ import css from "../css/app.css"
 //
 // Import dependencies
 //
-import "phoenix_html"
+import "phoenix_html";
+import $ from "jquery";
 
 // Import local files
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
+import init from "./ipolice";
+
+$(() => {
+  let root = document.getElementById('root');
+  if(root) {
+    init(root);
+  }
+});
