@@ -21,14 +21,18 @@ h6{font-size: 1.4rem; letter-spacing: 0; line-height: 1.2}
   flex-direction: row;
 }
 
-#map {
+.mapContainer {
   width: 80%;
   height: 100%;
 }
 
-.operation {
-  background-color: darkslateblue;
+.operationContainer {
   width: 30%;
+}
+
+.opsWrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 40.0rem) { /* Small devices (landscape phones, 576px and up) */
