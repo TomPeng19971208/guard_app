@@ -2,7 +2,6 @@ defmodule CampusPolice.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
-
   use Application
 
   def start(_type, _args) do
@@ -14,6 +13,7 @@ defmodule CampusPolice.Application do
       CampusPoliceWeb.Endpoint
       # Starts a worker by calling: CampusPolice.Worker.start_link(arg)
       # {CampusPolice.Worker, arg},
+
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

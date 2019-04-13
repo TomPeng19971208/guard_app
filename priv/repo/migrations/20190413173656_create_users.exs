@@ -5,7 +5,7 @@ defmodule CampusPolice.Repo.Migrations.CreateUsers do
     create table(:users) do
       add :address, :string
       add :username, :string
-      add :pasword, :string
+      add :pasword_hash, :string
       add :phone, :string
 
       timestamps()
