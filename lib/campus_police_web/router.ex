@@ -1,5 +1,9 @@
 defmodule CampusPoliceWeb.Router do
   use CampusPoliceWeb, :router
+  alias CampusPoliceWeb.UserController
+  alias CampusPoliceWeb.RecordController
+  alias CampusPoliceWeb.TypeController
+
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -19,7 +23,7 @@ defmodule CampusPoliceWeb.Router do
     get "/", PageController, :index
   end
 
-  scope "/api", CamousPoliceWeb do
+  scope "/api" do
     pipe_through :api
     resources "/users", UserController, except: [:new, :edit]
     resources "/records", RecordController, except: [:new, :edit]

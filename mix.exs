@@ -19,8 +19,9 @@ defmodule CampusPolice.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
+      application: [:ex_twilio],
       mod: {CampusPolice.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ex_twilio]
     ]
   end
 
@@ -43,9 +44,12 @@ defmodule CampusPolice.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:httpoison, "~> 1.5"},
+      {:httpoison, "~> 0.13"},
       {:argon2_elixir, "~> 1.3"},
-      {:distillery, "~> 2.0"}
+      {:distillery, "~> 2.0"},
+      {:comeonin, "~> 4.1"},
+      {:poison, "~> 3.0"},
+      {:ex_twilio, "~> 0.7.0"}
     ]
   end
 

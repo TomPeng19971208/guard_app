@@ -4,6 +4,7 @@ defmodule CampusPolice.Users do
   """
 
   import Ecto.Query, warn: false
+
   alias CampusPolice.Repo
 
   alias CampusPolice.Users.User
@@ -18,8 +19,15 @@ defmodule CampusPolice.Users do
 
   """
   def list_users do
-    Repo.all(User)
+    Repo.all from u in User, preload: [:records]
   end
+
+  def authenticate_user(name, password) do
+    Repo.get_by(User, username: name)
+    |> Comeonin.Argon2.check_pass(password)
+  end
+
+
 
   @doc """
   Gets a single user.
@@ -36,6 +44,17 @@ defmodule CampusPolice.Users do
 
   """
   def get_user!(id), do: Repo.get!(User, id)
+
+  def get_user(id) do
+    Repo.get(User, id)
+    |> Repo.preload([:records])
+  end
+
+  def get_user_by_name(name) do
+    Repo.one from u in User,
+      where: u.username == ^name,
+      preload: [:records]
+  end
 
   @doc """
   Creates a user.

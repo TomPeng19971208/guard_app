@@ -14,7 +14,6 @@ defmodule CampusPoliceWeb.UserView do
     %{id: user.id,
       address: user.address,
       username: user.username,
-      pasword: user.pasword,
       phone: user.phone}
   end
 end
