@@ -19,6 +19,13 @@ defmodule CampusPoliceWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", CamousPoliceWeb do
+    pipe_through :api
+    resources "/users", UserController, except: [:new, :edit]
+    resources "/records", RecordController, except: [:new, :edit]
+    resources "/types", TypeController, except: [:new, :edit]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", CampusPoliceWeb do
   #   pipe_through :api
