@@ -31,6 +31,12 @@ class Operation extends Component {
           </p>
         </IncidentsWrapper>
         <ActionsWrapper>
+          <button class="btn btn-info">
+            Report An Accident
+          </button>
+          <button class="btn btn-danger">
+            911
+          </button>
         </ActionsWrapper>
       </OpsContainer>
     );

@@ -25,7 +25,7 @@ export const IncidentsWrapper = styled.div`
 export const ActionsWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-betwee;
+  justify-content: space-between;
   align-items: center;
 `
 
