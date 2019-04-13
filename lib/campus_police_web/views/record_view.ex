@@ -1,6 +1,7 @@
 defmodule CampusPoliceWeb.RecordView do
   use CampusPoliceWeb, :view
   alias CampusPoliceWeb.RecordView
+  alias CampusPolice.Users
 
   def render("index.json", %{records: records}) do
     %{data: render_many(records, RecordView, "record.json")}
@@ -16,6 +17,8 @@ defmodule CampusPoliceWeb.RecordView do
       zip: record.zip,
       description: record.description,
       x: record.x,
-      y: record.y}
+      y: record.y,
+      user: %{name: record.user.username, phone: record.user.phone}
+    }
   end
 end

@@ -4,7 +4,7 @@ defmodule CampusPolice.Users.User do
 
   schema "users" do
     field :address, :string
-    field :pasword_hash, :string
+    field :password_hash, :string
     field :phone, :string
     field :username, :string
     has_many :records, CampusPolice.Records.Record
@@ -15,7 +15,7 @@ defmodule CampusPolice.Users.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:address, :username, :pasword_hash, :phone])
-    |> validate_required([:address, :username, :pasword_hash, :phone])
+    |> cast(attrs, [:address, :username, :password_hash, :phone])
+    |> validate_required([:address, :username, :password_hash, :phone])
   end
 end

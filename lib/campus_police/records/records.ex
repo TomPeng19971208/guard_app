@@ -7,6 +7,7 @@ defmodule CampusPolice.Records do
   alias CampusPolice.Repo
 
   alias CampusPolice.Records.Record
+  alias CampusPolice.Types
 
   @doc """
   Returns the list of records.
@@ -37,6 +38,11 @@ defmodule CampusPolice.Records do
   """
   def get_record!(id), do: Repo.get!(Record, id)
 
+  def get_record(id) do
+    Repo.get(Record, id)
+    |> preload([:user])
+  end
+
   @doc """
   Creates a record.
 
@@ -50,9 +56,17 @@ defmodule CampusPolice.Records do
 
   """
   def create_record(attrs \\ %{}) do
+    types = Enum.map(attrs["types"], fn x -> Types.get_type(x) end)
+    time = DateTime.utc_now
+    time = DateTime.truncate(time, :second)
+    attrs = Map.put(attrs, "date", time)
     %Record{}
     |> Record.changeset(attrs)
-    |> Repo.insert()
+    |> Repo.insert!()
+    |> Repo.preload([:types])
+    |> Ecto.Changeset.change
+    |> Ecto.Changeset.put_assoc(:types, types)
+    |> Repo.update
   end
 
   @doc """

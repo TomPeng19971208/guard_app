@@ -35,7 +35,16 @@ defmodule CampusPolice.Types do
       ** (Ecto.NoResultsError)
 
   """
-  def get_type!(id), do: Repo.get!(Type, id)
+  def get_type!(id) do
+    Repo.get!(Type, id)
+  end
+
+
+  def get_type(id) do
+    Repo.one from t in Type,
+    where: t.id == ^id,
+    preload: [:records]
+  end
 
   @doc """
   Creates a type.
