@@ -32,7 +32,7 @@ defmodule CampusPoliceWeb.RecordController do
   end
 
   def update(conn, %{"id" => id, "record" => record_params}) do
-    record = Records.get_record(id)
+    record = Records.get_record!(id)
 
     with {:ok, %Record{} = record} <- Records.update_record(record, record_params) do
       render(conn, "show.json", record: record)
@@ -45,5 +45,14 @@ defmodule CampusPoliceWeb.RecordController do
     with {:ok, %Record{}} <- Records.delete_record(record) do
       send_resp(conn, :no_content, "")
     end
+  end
+
+  def inform_residents(conn, %{"record_id" => record_id}) do
+    record = Records.get_record!(record_id)
+    info = record.description
+    %{address: address, numbers: numbers} = RecordUtil.get_local_numbers(record.x, record.y)
+    msg = address <> "\n" <> info
+    CampusPoliceUtil.API.broadcast_msgs(msg, numbers)
+    send_resp(conn, :no_content, "")
   end
 end

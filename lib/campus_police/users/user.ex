@@ -9,6 +9,7 @@ defmodule CampusPolice.Users.User do
     field :username, :string
     field :x, :float
     field :y, :float
+    field :zip, :string
     has_many :records, CampusPolice.Records.Record
 
     timestamps()
@@ -17,7 +18,7 @@ defmodule CampusPolice.Users.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:address, :username, :password_hash, :phone, :x, :y])
-    |> validate_required([:address, :username, :password_hash, :phone, :x, :y])
+    |> cast(attrs, [:address, :username, :password_hash, :phone, :x, :y, :zip])
+    |> validate_required([:address, :username, :password_hash, :phone, :x, :y, :zip])
   end
 end

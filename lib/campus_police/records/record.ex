@@ -20,6 +20,6 @@ defmodule CampusPolice.Records.Record do
   def changeset(record, attrs) do
     record
     |> cast(attrs, [:date, :zip, :description, :x, :y, :user_id])
-    |> validate_required([:date, :zip, :description, :"x", :"y"])
+    |> validate_required([:date, :zip, :description, :x, :y])
   end
 end

@@ -31,6 +31,7 @@ defmodule CampusPoliceWeb.Router do
     resources "/types", TypeController, except: [:new, :edit]
     get "/near_by_records", RecordController, :get_records_nearby
     post "/auth", AuthController, :authenticate
+    post "/inform_residents", RecordController, :inform_residents
   end
 
   # Other scopes may use custom stacks.
