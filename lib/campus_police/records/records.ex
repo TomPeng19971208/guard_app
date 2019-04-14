@@ -43,6 +43,11 @@ defmodule CampusPolice.Records do
     |> preload([:user])
   end
 
+  def list_record_by_zip(zip) do
+    Repo.all from r in Record,
+    where: r.zip == ^zip
+  end
+
   @doc """
   Creates a record.
 

@@ -14,5 +14,6 @@ defmodule CampusPolice.Repo.Migrations.CreateRecords do
     end
 
     create index(:records, [:user_id])
+    create index(:records, [:zip])
   end
 end

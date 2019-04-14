@@ -3,6 +3,7 @@ defmodule CampusPoliceWeb.Router do
   alias CampusPoliceWeb.UserController
   alias CampusPoliceWeb.RecordController
   alias CampusPoliceWeb.TypeController
+  alias CampusPoliceWeb.AuthController
 
 
   pipeline :browser do
@@ -28,6 +29,7 @@ defmodule CampusPoliceWeb.Router do
     resources "/users", UserController, except: [:new, :edit]
     resources "/records", RecordController, except: [:new, :edit]
     resources "/types", TypeController, except: [:new, :edit]
+    post "/auth", AuthController, :authenticate
   end
 
   # Other scopes may use custom stacks.
