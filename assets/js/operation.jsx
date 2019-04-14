@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import {
   OpsContainer,
-  LoginWrapper,
+  UserWrapper,
   IncidentsWrapper,
   ActionsWrapper,
 } from './styled-components/operationStyles';
-import Login from './login';
+import UserSession from './userSession';
 
 class Operation extends Component {
   render() {
     return (
       <OpsContainer>
-        <LoginWrapper>
-          <Login />
-        </LoginWrapper>
+        <UserWrapper>
+          <UserSession />
+        </UserWrapper>
         <IncidentsWrapper>
           <p>
             dd

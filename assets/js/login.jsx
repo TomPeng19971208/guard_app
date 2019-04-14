@@ -2,23 +2,49 @@ import React, { Component } from "react";
 import { SubmitButton } from './styled-components/operationStyles';
 import Popup from 'reactjs-popup';
 import axios from 'axios';
+import { apiUrl } from './constant';
+import { Button } from "react-bootstrap";
+import IPolice from './ipolice';
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isLoggedin: false,
       username: "",
       password: "",
-      newUsername: "",
-      newPassword: "",
     };
   }
 
   validateForm() {
     const { username, password } = this.state;
     return username.length > 0 && password.length > 0;
+  }
+
+  registerUser() {
+    const username = $("#createUsername").val();
+    const password = $("#createPassword").val();
+    const address = $("#createAddress").val();
+    const phone = $("#createPhone").val();
+    if (username.length > 0 && password.length > 0
+      && address.length > 0 && phone.length > 0) {
+      const payLoad = {
+        "user": {
+          "username": username,
+          "password": password,
+          "address": address,
+          "phone": phone,
+        }
+      };
+      axios.post(apiUrl + "users", payLoad)
+        .then((response) => {
+          this.setState({
+            username: username,
+            password: password,
+          });
+          this.signIn();
+        })
+    }
   }
 
   handleChange() {
@@ -29,24 +55,21 @@ class Login extends Component {
   }
 
   handleSubmit(event) {
-    const apiUrl = "http://localhost:4000/api/";
+    event.preventDefault();
+  }
+
+  signIn() {
     const payLoad = {
       "name": this.state.username,
       "password": this.state.password,
     }
-    axios.post(apiUrl + 'auth', payLoad)
+    axios.post(apiUrl + "auth", payLoad)
       .then((response) => {
-        console.log(response.data);
-        this.setState({
-          isLoggedin: true,
-        })
+        localStorage.setItem("userToken", response.data.data.token);
+        localStorage.setItem("userData", response.data.data.user_id);
+        window.location.reload();
       })
-      .catch((error) => {
-        alert("Invalid Username or Password");
-      })
-    event.preventDefault();
   }
-
   render() {
     return (
       <div className="Login">
@@ -56,31 +79,37 @@ class Login extends Component {
 
           <input id="password" name="password" type="password"
             placeholder="Enter Password" onChange={this.handleChange.bind(this)} />
+
           <SubmitButton
             block
             disabled={!this.validateForm()}
             type="submit"
+            onClick={this.signIn.bind(this)}
           >
             Login
           </SubmitButton>
 
           <Popup contentStyle={{ width: '40%' }}
             trigger={
-              <SubmitButton className="btn btn-secondary" id="signup-b">
+              <button className="btn btn-secondary" id="signup-b">
                 Sign Up
-              </SubmitButton>
+              </button>
             }
             modal closeOnDcumentClick>
-            <div >
+            <div>
               <input id="createUsername" name="createUsername" type="text"
                 placeholder="Create Username" />
               <input id="createPassword" name="createPassword" type="password"
                 placeholder="Create Password" />
+              <input id="createAddress" name="createAddress" type="address"
+                placeholder="Add Address" />
+              <input id="createPhone" name="createPhone" type="phone"
+                placeholder="Add Phone Number" />
               <div>
-                <SubmitButton
+                <Button
                   block
                   type="submit"
-                  onClick={() => { api.create_user() }}> Create </SubmitButton>
+                  onClick={() => { this.registerUser() }}> Create </Button>
               </div>
             </div>
           </Popup>

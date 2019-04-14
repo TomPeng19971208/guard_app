@@ -7,7 +7,7 @@ export const OpsContainer = styled.div`
   height: 100vh;
 `
 
-export const LoginWrapper = styled.div` 
+export const UserWrapper = styled.div` 
   height: 30%;
   display: flex;
   flex-direction: row;
