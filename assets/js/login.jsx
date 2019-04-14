@@ -28,26 +28,23 @@ class Login extends Component {
     });
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
     const apiUrl = "http://localhost:4000/api/";
     const payLoad = {
-      "username": this.state.username,
+      "name": this.state.username,
       "password": this.state.password,
     }
-    axios.post(apiUrl + 'authenticate_user', payLoad)
-      .then(function (response) {
-        if (response.data.code === 200) {
-          this.setState({
-            isLoggedin: true,
-          })
-        }
-        else if (response.data.code === 204) {
-          alert("Incorrect Password");
-        }
-        else {
-          alert("Username Invalid");
-        }
+    axios.post(apiUrl + 'auth', payLoad)
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          isLoggedin: true,
+        })
       })
+      .catch((error) => {
+        alert("Invalid Username or Password");
+      })
+    event.preventDefault();
   }
 
   render() {
