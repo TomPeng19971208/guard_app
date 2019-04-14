@@ -14,6 +14,9 @@ defmodule CampusPoliceWeb.UserView do
     %{id: user.id,
       address: user.address,
       username: user.username,
-      phone: user.phone}
+      phone: user.phone,
+      lat: user.y, 
+      lng: user.x
+    }
   end
 end

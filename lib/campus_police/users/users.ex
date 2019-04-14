@@ -70,6 +70,10 @@ defmodule CampusPolice.Users do
   """
   def create_user(attrs \\ %{}) do
     IO.inspect(attrs)
+    address = attrs["address"]
+    %{x: x, y: y} = CampusPoliceUtil.API.get_lat_long(address)
+    attrs = Map.put(attrs, "x", x)
+    attrs = Map.put(attrs, "y", y)
     %User{}
     |> User.changeset(attrs)
     |> Repo.insert()

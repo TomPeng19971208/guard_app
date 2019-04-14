@@ -7,7 +7,8 @@ defmodule CampusPolice.Repo.Migrations.CreateUsers do
       add :username, :string
       add :password_hash, :string
       add :phone, :string
-
+      add :x, :float
+      add :y, :float
       timestamps()
     end
 

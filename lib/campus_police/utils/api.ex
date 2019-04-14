@@ -7,4 +7,14 @@ defmodule CampusPoliceUtil.API do
      body: msg])
   end
 
+  def get_lat_long(address) do
+    address = Regex.replace(~r/\s/, address, "+")
+    key="AIzaSyBe6sZGE3Z3NmYRNrqeKNgK6QTdWXr44sk"
+    url="https://maps.googleapis.com/maps/api/geocode/json?address=#{address}&key=#{key}"
+    resp = HTTPoison.get!(url)
+    resp = Jason.decode!(resp.body)
+    location = hd(resp["results"])["geometry"]["location"]
+    %{x: location["lng"], y: location["lat"]}
+  end
+
 end

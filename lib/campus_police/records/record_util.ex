@@ -14,7 +14,7 @@ defmodule RecordUtil do
      data = hd(Jason.decode!(resp.body)["results"])
      zipcode = List.last(data["address_components"])["long_name"]
      candidate_records = Records.list_record_by_zip(zipcode)
-     Enum.filter(candidate_records, fn record -> calc_distance({x, y}, {record.x, record.y}) < 5 end)
+     Enum.filter(candidate_records, fn record -> calc_distance(%{x: x, y: y}, %{x: record.x, y: record.y}) <5 end)
    end
 
 end
