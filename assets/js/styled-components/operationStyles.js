@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from "react-bootstrap";
 
 export const OpsContainer = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ export const OpsContainer = styled.div`
 `
 
 export const LoginWrapper = styled.div` 
-  height: 10%;
+  height: 30%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -15,7 +16,7 @@ export const LoginWrapper = styled.div`
 `
 
 export const IncidentsWrapper = styled.div`
-  height: 70%;
+  height: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -32,5 +33,12 @@ export const ActionsWrapper = styled.div`
 export const ReportButton = styled.button`
   &:hover {
     cursor: pointer;
+  }
+`
+
+export const SubmitButton = styled(Button)`
+  &:disabled {
+    background-color: gray;
+    border: none;
   }
 `

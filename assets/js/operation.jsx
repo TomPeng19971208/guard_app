@@ -5,13 +5,14 @@ import {
   IncidentsWrapper,
   ActionsWrapper,
 } from './styled-components/operationStyles';
+import Login from './login';
 
 class Operation extends Component {
   render() {
     return (
       <OpsContainer>
         <LoginWrapper>
-          Login
+          <Login />
         </LoginWrapper>
         <IncidentsWrapper>
           <p>
@@ -31,10 +32,10 @@ class Operation extends Component {
           </p>
         </IncidentsWrapper>
         <ActionsWrapper>
-          <button class="btn btn-info">
+          <button className="btn btn-info">
             Report An Accident
           </button>
-          <button class="btn btn-danger">
+          <button className="btn btn-danger">
             911
           </button>
         </ActionsWrapper>
