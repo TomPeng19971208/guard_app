@@ -71,12 +71,20 @@ defmodule CampusPolice.Users do
   def create_user(attrs \\ %{}) do
     IO.inspect(attrs)
     address = attrs["address"]
-    %{x: x, y: y} = CampusPoliceUtil.API.get_lat_long(address)
+    %{x: x, y: y, zip: zip} = CampusPoliceUtil.API.get_lat_long_zip(address)
     attrs = Map.put(attrs, "x", x)
     attrs = Map.put(attrs, "y", y)
+    attrs = Map.put(attrs, "zip", zip)
+
     %User{}
     |> User.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def list_user_by_zip(zip) do
+    Repo.all from u in User,
+      where: u.zip == ^zip,
+      preload: [:records]
   end
 
   @doc """

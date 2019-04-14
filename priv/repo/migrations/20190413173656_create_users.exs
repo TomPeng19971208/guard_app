@@ -9,6 +9,7 @@ defmodule CampusPolice.Repo.Migrations.CreateUsers do
       add :phone, :string
       add :x, :float
       add :y, :float
+      add :zip, :string
       timestamps()
     end
 
