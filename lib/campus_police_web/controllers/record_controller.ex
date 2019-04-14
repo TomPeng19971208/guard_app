@@ -21,6 +21,11 @@ defmodule CampusPoliceWeb.RecordController do
     end
   end
 
+  def get_records_nearby(conn, %{"x" => x, "y" => y}) do
+    records = RecordUtil.get_records_nearby(x, y)
+    render(conn, "index.json", records: records)
+  end
+
   def show(conn, %{"id" => id}) do
     record = Records.get_record(id)
     render(conn, "show.json", record: record)

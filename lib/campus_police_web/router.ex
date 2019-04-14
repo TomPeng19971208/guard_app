@@ -29,6 +29,7 @@ defmodule CampusPoliceWeb.Router do
     resources "/users", UserController, except: [:new, :edit]
     resources "/records", RecordController, except: [:new, :edit]
     resources "/types", TypeController, except: [:new, :edit]
+    get "/near_by_records", RecordController, :get_records_nearby
     post "/auth", AuthController, :authenticate
   end
 

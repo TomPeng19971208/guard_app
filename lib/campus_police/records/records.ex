@@ -45,7 +45,8 @@ defmodule CampusPolice.Records do
 
   def list_record_by_zip(zip) do
     Repo.all from r in Record,
-    where: r.zip == ^zip
+      where: r.zip == ^zip,
+      preload: [:user]
   end
 
   @doc """
