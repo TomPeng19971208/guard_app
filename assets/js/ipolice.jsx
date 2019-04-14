@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import Map from './map';
+import Operation from './operation';
+import Login from './login';
 
-export default function init(root) {
-  ReactDOM.render(<IPolice />, root);
-}
 
 class IPolice extends Component {
+  renderMain() {
+    return (
+      <React.Fragment>
+        <div className="mapContainer">
+          <Map />
+        </div>
+        <div className="operationContainer">
+          <Operation />
+        </div>
+      </React.Fragment>
+    );
+  }
+
   render() {
     return (
-      <div>
-        This is a test map
+      <div className="mainContainer">
+        {localStorage.getItem("userData") ? this.renderMain() : <Login />}
       </div>
     );
   }
 }
+
+export default IPolice;
