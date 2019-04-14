@@ -13,6 +13,7 @@ defmodule CampusPoliceWeb.RecordController do
 
   def create(conn, %{"record" => record_params}) do
     with {:ok, %Record{} = record} <- Records.create_record(record_params) do
+      record = CampusPolice.Repo.preload(record, [:user])
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.record_path(conn, :show, record))
@@ -21,12 +22,12 @@ defmodule CampusPoliceWeb.RecordController do
   end
 
   def show(conn, %{"id" => id}) do
-    record = Records.get_record!(id)
+    record = Records.get_record(id)
     render(conn, "show.json", record: record)
   end
 
   def update(conn, %{"id" => id, "record" => record_params}) do
-    record = Records.get_record!(id)
+    record = Records.get_record(id)
 
     with {:ok, %Record{} = record} <- Records.update_record(record, record_params) do
       render(conn, "show.json", record: record)

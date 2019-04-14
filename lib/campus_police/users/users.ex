@@ -69,6 +69,7 @@ defmodule CampusPolice.Users do
 
   """
   def create_user(attrs \\ %{}) do
+    IO.inspect(attrs)
     %User{}
     |> User.changeset(attrs)
     |> Repo.insert()

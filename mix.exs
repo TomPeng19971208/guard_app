@@ -49,7 +49,8 @@ defmodule CampusPolice.MixProject do
       {:distillery, "~> 2.0"},
       {:comeonin, "~> 4.1"},
       {:poison, "~> 3.0"},
-      {:ex_twilio, "~> 0.7.0"}
+      {:ex_twilio, "~> 0.7.0"},
+      {:distance, "~> 0.2.1"}
     ]
   end
 
