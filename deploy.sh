@@ -23,4 +23,4 @@ mix release
 
 echo "Starting app..."
 
-_build/prod/rel/CampusPolice/bin/CampusPolice foreground
+_build/prod/rel/campus_police/bin/campus_police foreground
