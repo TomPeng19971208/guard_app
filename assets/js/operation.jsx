@@ -9,6 +9,7 @@ import UserSession from './userSession';
 import axios from 'axios';
 import { apiUrl } from './constant';
 import ReportButton from './reportButton';
+import EmergencyButton from './emergencyButton';
 
 class Operation extends Component {
   reportCrime() {
@@ -50,7 +51,7 @@ class Operation extends Component {
         </IncidentsWrapper>
         <ActionsWrapper>
           <ReportButton />
-
+          <EmergencyButton />
         </ActionsWrapper>
       </OpsContainer>
     );

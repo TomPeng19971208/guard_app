@@ -85,17 +85,19 @@ class ReportButton extends Component {
           </button>
         }
         modal closeOnDcumentClick>
-        <ReportCrimeWrapper>
-          <input id="description" name="description" type="description"
-            placeholder="Add Address" />
-        </ReportCrimeWrapper>
-        <form>
-          {this.renderCheckboxes()}
-        </form>
         <div>
-          <Button onClick={this.reportCrime.bind(this)}>
-            Submit
+          <ReportCrimeWrapper>
+            <input id="description" name="description" type="description"
+              placeholder="Add Address" />
+          </ReportCrimeWrapper>
+          <form>
+            {this.renderCheckboxes()}
+          </form>
+          <div>
+            <Button onClick={this.reportCrime.bind(this)}>
+              Submit
           </Button>
+          </div>
         </div>
       </Popup>
     );

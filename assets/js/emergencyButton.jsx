@@ -6,22 +6,30 @@ import { geolocated } from 'react-geolocated';
 class EmergencyButton extends Component {
   sendMessage() {
     const { coords } = this.props;
-    const
+    let recordId;
     const payLoad = {
-      "results": {
-        "x": coords.longitutde,
+      "record": {
+        "x": coords.longitude,
         "y": coords.latitude,
         "description": "This is an emergency call",
         "types": [1, 2],
         "user_id": localStorage.getItem("userData"),
       }
     };
-    // axios.post(apiUrl + "records")
+    axios.post("http://localhost:4000/api/records", payLoad)
+      .then((response) => {
+        recordId = response.data.data.id;
+        console.log(recordId);
+        axios.post("http://localhost:4000/api/inform_residents", { "record_id": recordId })
+          .then(() => {
+            alert("Help Is On The Way");
+          });
+      });
   }
 
   render() {
     return (
-      <button className="btn btn-danger">
+      <button className="btn btn-danger" onClick={this.sendMessage.bind(this)}>
         911
       </button>
     );
