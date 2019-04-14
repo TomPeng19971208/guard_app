@@ -15,16 +15,16 @@ h5{font-size: 1.6rem; letter-spacing: 0; line-height: 1.4}
 h6{font-size: 1.4rem; letter-spacing: 0; line-height: 1.2}
 
 .mainContainer {
-  margin: auto;
+  display: flex;
+  flex-direction: row;
 }
 
 #login-form {
-  width: 50%;
-  margin: auto;
+  height: 50%;
 }
 
 .mapContainer {
-  width: 80%;
+  width: 70%;
   height: 100%;
 }
 
