@@ -8,7 +8,7 @@ export const OpsContainer = styled.div`
 `
 
 export const UserWrapper = styled.div` 
-  height: 30%;
+  height: 20%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -16,7 +16,7 @@ export const UserWrapper = styled.div`
 `
 
 export const IncidentsWrapper = styled.div`
-  height: 50%;
+  height: 60%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -24,6 +24,7 @@ export const IncidentsWrapper = styled.div`
 `
 
 export const ActionsWrapper = styled.div`
+  height: 20%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -41,4 +42,9 @@ export const SubmitButton = styled(Button)`
     background-color: gray;
     border: none;
   }
+`
+
+export const ReportCrimeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `

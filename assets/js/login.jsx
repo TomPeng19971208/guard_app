@@ -4,7 +4,6 @@ import Popup from 'reactjs-popup';
 import axios from 'axios';
 import { apiUrl } from './constant';
 import { Button } from "react-bootstrap";
-import IPolice from './ipolice';
 
 class Login extends Component {
   constructor(props) {
@@ -37,7 +36,7 @@ class Login extends Component {
         }
       };
       axios.post(apiUrl + "users", payLoad)
-        .then((response) => {
+        .then(() => {
           this.setState({
             username: username,
             password: password,
@@ -69,7 +68,11 @@ class Login extends Component {
         localStorage.setItem("userData", response.data.data.user_id);
         window.location.reload();
       })
+      .catch(() => {
+        alert("Invalid Username or Password");
+      })
   }
+
   render() {
     return (<div>
       <div className="Login">
