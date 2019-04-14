@@ -5,7 +5,10 @@ import { geolocated } from 'react-geolocated';
 class EmergencyButton extends Component {
   sendMessage() {
     const { coords } = this.props;
-    let recordId;
+    navigator.geolocation.getCurrentPosition(function(position) {
+      let y= position.coords.latitude;
+      let x = position.coords.longitude;
+    });
     const payLoad = {
       "record": {
         "x": coords.longitude,
@@ -17,9 +20,8 @@ class EmergencyButton extends Component {
     };
     axios.post("http://localhost:4000/api/records", payLoad)
       .then((response) => {
-        recordId = response.data.data.id;
-        console.log(recordId);
-        axios.post("http://localhost:4000/api/inform_residents", { "record_id": recordId })
+        let recordId = response.data.data.id;
+        axios.post("http://localhost:4000/api/inform_individual", {"record_id": recordId, "phone": "18054799982"})
           .then(() => {
             alert("Help Is On The Way");
             window.location.reload();

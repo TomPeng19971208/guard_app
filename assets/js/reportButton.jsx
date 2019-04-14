@@ -27,10 +27,6 @@ class ReportButton extends Component {
       })
   }
 
-  reportCrime() {
-    axios.post(apiUrl + "")
-  }
-
   onChange(e) {
     let index = 0;
     const { options } = this.state;
@@ -57,25 +53,32 @@ class ReportButton extends Component {
   }
 
   reportCrime() {
-    const { coords } = this.props;
-    const x = coords.longitude;
-    const y = coords.latitude
-    const payLoad = {
-      "record": {
-        "x": x,
-        "y": y,
-        "description": $("#description").val(),
-        "types": this.state.options,
-        "user_id": localStorage.getItem("userData"),
+    let options = this.state.options;
+    navigator.geolocation.getCurrentPosition(function(position) {
+      let y= position.coords.latitude;
+      let x = position.coords.longitude;
+      const payLoad = {
+        "record": {
+          "x": x,
+          "y": y,
+          "description": $("#description").val(),
+          "types": options,
+          "user_id": localStorage.getItem("userData"),
+        }
       }
-    }
-    console.log(payLoad);
-    axios.post(apiUrl + "records", payLoad)
-      .then(() => {
-        alert("Thank You");
-        window.location.reload();
-      });
+      axios.post(apiUrl + "records", payLoad)
+        .then((resp) => {
+          console.log(resp.data.data.id)
+          alert("Thank You");
+          let temp = {"record_id": resp.data.id}
+          axios.post(apiUrl + "inform_residents", {"record_id": resp.data.data.id})
+            .then((resp) => {
+              //window.location.reload();
+            });
+        });
+    });
   }
+
 
   render() {
     return (
