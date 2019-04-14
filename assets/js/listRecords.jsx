@@ -11,7 +11,7 @@ class ListRecords extends Component {
 
   componentDidMount() {
     const today = new Date();
-    axios.get("http://localhost:4000/api/records")
+    axios.get("https://police.zy-peng.com/api/records")
       .then((response) => {
         const records = response.data.data.filter((record) => {
           let date = new Date(record.date);

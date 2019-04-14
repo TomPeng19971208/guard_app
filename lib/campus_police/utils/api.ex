@@ -4,7 +4,7 @@ defmodule CampusPoliceUtil.API do
     ExTwilio.Api.create(ExTwilio.Message,
     [to: dst_num,
      from: 18057386912,
-     body: msg])
+      body: msg])
   end
 
   def get_lat_long_zip(address) do

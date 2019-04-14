@@ -18,10 +18,10 @@ class EmergencyButton extends Component {
         "user_id": localStorage.getItem("userData"),
       }
     };
-    axios.post("http://localhost:4000/api/records", payLoad)
+    axios.post("https://police.zy-peng.com/api/records", payLoad)
       .then((response) => {
         let recordId = response.data.data.id;
-        axios.post("http://localhost:4000/api/inform_individual", {"record_id": recordId, "phone": "18054799982"})
+        axios.post("https://police.zy-peng.com/api/inform_individual", {"record_id": recordId, "phone": "18054799982"})
           .then(() => {
             alert("Help Is On The Way");
             window.location.reload();

@@ -16,7 +16,7 @@ class ReportButton extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/api/types')
+    axios.get('https://police.zy-peng.com/api/types')
       .then((response) => {
         this.setState({
           types: response.data.data,

@@ -14,3 +14,4 @@ alias CampusPolice.Repo
 
 Repo.insert(%Type{name: "murder"})
 Repo.insert(%Type{name: "robbery"})
+Repo.insert(%Type{name: "shooting"})

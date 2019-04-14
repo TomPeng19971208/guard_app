@@ -10,7 +10,7 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :campus_police, CampusPoliceWeb.Endpoint,
-  http: [:inet6, port: System.get_env("PORT") || 4500],
+  https: [:inet6, port: System.get_env("PORT"), keyfile: Path.expand("/etc/letsencrypt/live/police.zy-peng.com/privkey.pem", __DIR__),certfile: Path.expand("/etc/letsencrypt/live/police.zy-peng.com/fullchain.pem", __DIR__),],       
   url: [host: "police.zy-peng.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json", 
   server: true

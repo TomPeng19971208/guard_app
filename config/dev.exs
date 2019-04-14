@@ -69,9 +69,8 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Configure your database
 config :campus_police, CampusPolice.Repo,
-  username: "tracker",
+  username: "tracker3",
   password: "P@ssw0rd",
-  database: "police_dev",
-  hostname: "127.0.0.1",
-  port: 6432,
+  database: "police_prod",
+  hostname: "45.63.17.107",
   pool_size: 10
