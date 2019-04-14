@@ -74,13 +74,14 @@ class Login extends Component {
   }
 
   render() {
-    return (
+    return (<div>
       <div className="Login">
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <input id="username" name="username" type="text"
+        <form className ="form-group" id="login-form" onSubmit={this.handleSubmit.bind(this)}>
+          <label htmlFor="username">Username: </label>
+          <input type="email" className="form-control" id="username" name="username" type="text"
             placeholder="Enter Username" onChange={this.handleChange.bind(this)} />
-
-          <input id="password" name="password" type="password"
+          <label htmlFor="password">Password: </label>
+          <input id="password" name="password" type="password" className="form-control"
             placeholder="Enter Password" onChange={this.handleChange.bind(this)} />
 
           <SubmitButton
@@ -88,13 +89,17 @@ class Login extends Component {
             disabled={!this.validateForm()}
             type="submit"
             onClick={this.signIn.bind(this)}
+            className="btn btn-primary"
           >
             Login
           </SubmitButton>
+        </form>
+       </div>
 
+       <div>
           <Popup contentStyle={{ width: '40%' }}
             trigger={
-              <button className="btn btn-secondary" id="signup-b">
+              <button className="btn btn-primary" id="signup-b">
                 Sign Up
               </button>
             }
@@ -116,8 +121,8 @@ class Login extends Component {
               </div>
             </div>
           </Popup>
-        </form>
-      </div >
+      </div>
+      </div>
     );
   }
 }

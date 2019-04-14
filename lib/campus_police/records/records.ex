@@ -20,6 +20,7 @@ defmodule CampusPolice.Records do
   """
   def list_records do
     Repo.all(Record)
+    |> Repo.preload([:user])
   end
 
   @doc """
@@ -66,6 +67,7 @@ defmodule CampusPolice.Records do
     time = DateTime.utc_now
     time = DateTime.truncate(time, :second)
     attrs = Map.put(attrs, "date", time)
+    zip =
     %Record{}
     |> Record.changeset(attrs)
     |> Repo.insert!()

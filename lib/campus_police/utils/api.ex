@@ -23,4 +23,13 @@ defmodule CampusPoliceUtil.API do
     Enum.each(numbers, fn n -> CampusPoliceUtil.API.send(msg, n) end)
   end
 
+  def get_address(x, y) do
+    key="AIzaSyBe6sZGE3Z3NmYRNrqeKNgK6QTdWXr44sk"
+    url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=#{y},#{x}&key=#{key}"
+    resp = HTTPoison.get!(url)
+    data = hd(Jason.decode!(resp.body)["results"])
+    address = data["formatted_address"]
+    %{address: address}
+  end
+
 end

@@ -32,6 +32,7 @@ defmodule CampusPoliceWeb.Router do
     get "/near_by_records", RecordController, :get_records_nearby
     post "/auth", AuthController, :authenticate
     post "/inform_residents", RecordController, :inform_residents
+    post "/inform_individual", RecordController, :inform_individual
   end
 
   # Other scopes may use custom stacks.
