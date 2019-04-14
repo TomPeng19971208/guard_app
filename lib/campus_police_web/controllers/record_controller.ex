@@ -47,6 +47,11 @@ defmodule CampusPoliceWeb.RecordController do
     end
   end
 
+  def get_address_info(conn, %{"x"=> x, "y" => y}) do
+    %{address: address, zip: zip} = CampusPoliceUtil.API.get_address(x, y)
+    render(conn, "address_info.json", data: %{address: address, zip: zip})
+  end
+
   def inform_residents(conn, %{"record_id" => record_id}) do
     record = Records.get_record!(record_id)
     info = record.description
@@ -58,10 +63,17 @@ defmodule CampusPoliceWeb.RecordController do
 
   def inform_individual(conn, %{"record_id" => record_id, "phone" => phone}) do
     record = Records.get_record!(record_id)
-    info = record.description
     %{address: address} = CampusPoliceUtil.API.get_address(record.x, record.y)
-    msg = address <> "\n" <> info
-    CampusPoliceUtil.API.send(msg, phone)
+    if phone == "911" do
+      info = "Emergency! (Auto-generated): \n victim: #{record.user.username} \n
+      I am not able to speak, don't call me back! Need assistance immediately!"
+      msg = address <> "\n" <> info
+      CampusPoliceUtil.API.send(msg, phone)
+    else
+      info = record.description
+      msg = address <> "\n" <> info
+      CampusPoliceUtil.API.send(msg, phone)
+    end
     send_resp(conn, :no_content, "")
   end
 end

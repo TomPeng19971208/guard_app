@@ -9,13 +9,13 @@ defmodule CampusPoliceUtil.API do
 
   def get_lat_long_zip(address) do
     address = Regex.replace(~r/\s/, address, "+")
-    key="AIzaSyBe6sZGE3Z3NmYRNrqeKNgK6QTdWXr44sk"
+    key=Application.get_env(:campus_police, :google_api_key)
     url="https://maps.googleapis.com/maps/api/geocode/json?address=#{address}&key=#{key}"
     resp = HTTPoison.get!(url)
     resp = Jason.decode!(resp.body)
     location = hd(resp["results"])["geometry"]["location"]
     address_component = hd(resp["results"])["address_components"]
-    zip = List.last(address_component)["long_name"]
+    zip = Enum.find(address_component, fn x -> x["types"]==["postal_code"] end)["long_name"]
     %{x: location["lng"], y: location["lat"], zip: zip}
   end
 
@@ -24,12 +24,15 @@ defmodule CampusPoliceUtil.API do
   end
 
   def get_address(x, y) do
-    key="AIzaSyBe6sZGE3Z3NmYRNrqeKNgK6QTdWXr44sk"
+    key=Application.get_env(:campus_police, :google_api_key)
     url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=#{y},#{x}&key=#{key}"
     resp = HTTPoison.get!(url)
-    data = hd(Jason.decode!(resp.body)["results"])
+    resp = Jason.decode!(resp.body)
+    data = hd(resp["results"])
     address = data["formatted_address"]
-    %{address: address}
+    address_component = hd(resp["results"])["address_components"]
+    zip = Enum.find(address_component, fn x -> x["types"]==["postal_code"] end)["long_name"]
+    %{address: address, zip: zip}
   end
 
 end

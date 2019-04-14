@@ -67,7 +67,8 @@ defmodule CampusPolice.Records do
     time = DateTime.utc_now
     time = DateTime.truncate(time, :second)
     attrs = Map.put(attrs, "date", time)
-    zip =
+    %{address: _, zip: zip} = CampusPoliceUtil.API.get_address(attrs["x"], attrs["y"])
+    attrs = Map.put(attrs, "zip", zip)
     %Record{}
     |> Record.changeset(attrs)
     |> Repo.insert!()
