@@ -6,26 +6,11 @@ import {
   ActionsWrapper,
 } from './styled-components/operationStyles';
 import UserSession from './userSession';
-import axios from 'axios';
-import { apiUrl } from './constant';
 import ReportButton from './reportButton';
 import EmergencyButton from './emergencyButton';
+import ListRecords from './listRecords';
 
 class Operation extends Component {
-  reportCrime() {
-    const payLoad = {
-
-    }
-    axios.post(apiUrl + records)
-      .then((response))
-  }
-
-  checkboxToNumber(list) {
-    list.filter((item) => {
-      item.isChecked
-    })
-  }
-
   render() {
     return (
       <OpsContainer>
@@ -33,21 +18,7 @@ class Operation extends Component {
           <UserSession />
         </UserWrapper>
         <IncidentsWrapper>
-          <p>
-            dd
-          </p>
-          <p>
-            dd
-          </p>
-          <p>
-            dd
-          </p>
-          <p>
-            dd
-          </p>
-          <p>
-            dd
-          </p>
+          <ListRecords />
         </IncidentsWrapper>
         <ActionsWrapper>
           <ReportButton />
