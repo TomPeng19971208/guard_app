@@ -50,9 +50,7 @@ class Operation extends Component {
         </IncidentsWrapper>
         <ActionsWrapper>
           <ReportButton />
-          <button className="btn btn-danger">
-            911
-          </button>
+
         </ActionsWrapper>
       </OpsContainer>
     );

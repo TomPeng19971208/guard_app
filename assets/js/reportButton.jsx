@@ -57,12 +57,13 @@ class ReportButton extends Component {
   }
 
   reportCrime() {
-    const x = this.props.coords.longitude;
-    const y = this.props.coords.latitude
+    const { coords } = this.props;
+    const x = coords.longitude;
+    const y = coords.latitude
     const payLoad = {
       "record": {
-        "x": y,
-        "y": x,
+        "x": x,
+        "y": y,
         "description": $("#description").val(),
         "types": this.state.options,
         "user_id": localStorage.getItem("userData"),
