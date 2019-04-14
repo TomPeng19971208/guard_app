@@ -16,11 +16,11 @@ import $ from "jquery";
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
-import init from "./ipolice";
+import init from "./root";
 
 $(() => {
   let root = document.getElementById('root');
-  if(root) {
+  if (root) {
     init(root);
   }
 });
