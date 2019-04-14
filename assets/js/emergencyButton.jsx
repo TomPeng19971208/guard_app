@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import apiUrl from './constant';
 import { geolocated } from 'react-geolocated';
 
 class EmergencyButton extends Component {
@@ -23,6 +22,7 @@ class EmergencyButton extends Component {
         axios.post("http://localhost:4000/api/inform_residents", { "record_id": recordId })
           .then(() => {
             alert("Help Is On The Way");
+            window.location.reload();
           });
       });
   }

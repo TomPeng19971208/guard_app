@@ -73,6 +73,7 @@ class ReportButton extends Component {
     axios.post(apiUrl + "records", payLoad)
       .then(() => {
         alert("Thank You");
+        window.location.reload();
       });
   }
 
@@ -88,7 +89,7 @@ class ReportButton extends Component {
         <div>
           <ReportCrimeWrapper>
             <input id="description" name="description" type="description"
-              placeholder="Add Address" />
+              placeholder="Add Description" />
           </ReportCrimeWrapper>
           <form>
             {this.renderCheckboxes()}

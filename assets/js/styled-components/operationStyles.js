@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Button } from "react-bootstrap";
+import PropTypes from 'prop-types';
+import React from 'react';
 
 export const OpsContainer = styled.div`
   display: flex;
@@ -20,7 +22,9 @@ export const IncidentsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
+  overflow-y: auto;
+  margin-left: 6px;
 `
 
 export const ActionsWrapper = styled.div`
@@ -47,4 +51,20 @@ export const SubmitButton = styled(Button)`
 export const ReportCrimeWrapper = styled.div`
   display: flex;
   flex-direction: column;
+`
+
+export const Marker = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  background-color: red;
+  border: 2px solid #fff;
+  border-radius: 100%;
+  user-select: none;
+  transform: translate(-50%, -50%);
+  &:hover {
+    z-index: 1;
+  }
 `
