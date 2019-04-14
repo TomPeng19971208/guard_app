@@ -20,7 +20,6 @@ config :campus_police, CampusPoliceWeb.Endpoint,
       cd: Path.expand("../assets", __DIR__)
     ]
   ]
-
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
@@ -55,6 +54,8 @@ config :campus_police, CampusPoliceWeb.Endpoint,
       ~r{lib/campus_police_web/templates/.*(eex)$}
     ]
   ]
+
+
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

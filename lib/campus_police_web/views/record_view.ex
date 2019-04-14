@@ -21,4 +21,8 @@ defmodule CampusPoliceWeb.RecordView do
       user: %{name: record.user.username, phone: record.user.phone}
     }
   end
+
+  def render("address_info.json", %{data: data}) do
+    %{address: data.address, zip: data.zip}
+  end
 end

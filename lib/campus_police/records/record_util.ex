@@ -10,7 +10,7 @@ defmodule RecordUtil do
    end
 
    def get_records_nearby(x, y) do
-     key="AIzaSyBe6sZGE3Z3NmYRNrqeKNgK6QTdWXr44sk"
+     key=Application.get_env(:campus_police, :google_api_key)
      url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=#{y},#{x}&key=#{key}"
      resp = HTTPoison.get!(url)
      data = hd(Jason.decode!(resp.body)["results"])
@@ -22,7 +22,7 @@ defmodule RecordUtil do
    end
 
    def get_local_numbers(x, y) do
-     key="AIzaSyBe6sZGE3Z3NmYRNrqeKNgK6QTdWXr44sk"
+     key=Application.get_env(:campus_police, :google_api_key)
      url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=#{y},#{x}&key=#{key}"
      resp = HTTPoison.get!(url)
      data = hd(Jason.decode!(resp.body)["results"])

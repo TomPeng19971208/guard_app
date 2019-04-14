@@ -33,6 +33,7 @@ defmodule CampusPoliceWeb.Router do
     post "/auth", AuthController, :authenticate
     post "/inform_residents", RecordController, :inform_residents
     post "/inform_individual", RecordController, :inform_individual
+    get "/address_info", RecordController, :get_address_info
   end
 
   # Other scopes may use custom stacks.

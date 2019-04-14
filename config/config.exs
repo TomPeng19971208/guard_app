@@ -8,7 +8,8 @@
 use Mix.Config
 
 config :campus_police,
-  ecto_repos: [CampusPolice.Repo]
+  ecto_repos: [CampusPolice.Repo],
+  google_api_key: "AIzaSyBe6sZGE3Z3NmYRNrqeKNgK6QTdWXr44sk"
 
 # Configures the endpoint
 config :campus_police, CampusPoliceWeb.Endpoint,
@@ -27,6 +28,7 @@ config :phoenix, :json_library, Jason
 
 config :ex_twilio, account_sid: {:system, "SID"},
                    auth_token: {:system, "TOKEN"}
+
 
 
 
