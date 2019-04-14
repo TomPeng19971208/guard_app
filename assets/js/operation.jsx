@@ -8,6 +8,7 @@ import {
 import UserSession from './userSession';
 import axios from 'axios';
 import { apiUrl } from './constant';
+import ReportButton from './reportButton';
 
 class Operation extends Component {
   reportCrime() {
@@ -16,6 +17,12 @@ class Operation extends Component {
     }
     axios.post(apiUrl + records)
       .then((response))
+  }
+
+  checkboxToNumber(list) {
+    list.filter((item) => {
+      item.isChecked
+    })
   }
 
   render() {
@@ -42,22 +49,7 @@ class Operation extends Component {
           </p>
         </IncidentsWrapper>
         <ActionsWrapper>
-          <Popup contentStyle={{ width: '40%' }}
-            trigger={
-              <button className="btn btn-info">
-                Report A Crime
-              </button>
-            }
-            modal closeOnDcumentClick>
-            <input id="zip" name="zip" type="zip"
-              placeholder="Create Username" />
-            <input id="address" name="address" type="address"
-              placeholder="Create Password" />
-            <input id="description" name="description" type="description"
-              placeholder="Add Address" />
-            <input id="types" name="types" type="types"
-              placeholder="Add Phone Number" />
-          </Popup>
+          <ReportButton />
           <button className="btn btn-danger">
             911
           </button>

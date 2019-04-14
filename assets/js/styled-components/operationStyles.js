@@ -42,3 +42,8 @@ export const SubmitButton = styled(Button)`
     border: none;
   }
 `
+
+export const ReportCrimeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`
