@@ -55,4 +55,13 @@ defmodule CampusPoliceWeb.RecordController do
     CampusPoliceUtil.API.broadcast_msgs(msg, numbers)
     send_resp(conn, :no_content, "")
   end
+
+  def inform_individual(conn, %{"record_id" => record_id, "phone" => phone}) do
+    record = Records.get_record!(record_id)
+    info = record.description
+    %{address: address} = CampusPoliceUtil.API.get_address(record.x, record.y)
+    msg = address <> "\n" <> info
+    CampusPoliceUtil.API.send(msg, phone)
+    send_resp(conn, :no_content, "")
+  end
 end
